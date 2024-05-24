@@ -1,5 +1,12 @@
 import Image from "next/image";
-import { getStrapiMedia } from "@/lib/utils";
+
+export function getStrapiMedia(url: string | null) {
+  const strapiUrl = process.env.STRAPI_BASE_URL ?? "http://localhost:1337";
+  if (url == null) return null;
+  if (url.startsWith("data:")) return url;
+  if (url.startsWith("http") || url.startsWith("//")) return url;
+  return `${strapiUrl}${url}`;
+}
 
 interface StrapiImageProps {
   src: string;

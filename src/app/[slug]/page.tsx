@@ -33,7 +33,7 @@ export async function generateStaticParams() {
   });
 
   const pages = await fetchData(url.href);
-  if (pages.error.status === 404) return []
+  if (pages?.error?.status === 404) return []
 
   return pages.data.map((page: Readonly<StaticParamsProps>) => ({
     slug: page.slug,
@@ -79,7 +79,6 @@ async function loader(slug: string) {
   const url = new URL(path, baseUrl);
   url.search = query;
   const data = await fetchData(url.href);
-  if (data.error) 
   return data;
 }
 
@@ -108,17 +107,12 @@ function blockRenderer(block: any) {
 
 export default async function DynamicPageRoute(props: Readonly<PageProps>) {
   const slug = props.params?.slug;
+
   const data = await loader(slug);
-  console.log(data, { depth: null });
+  if (data?.error?.status === 404) return notFound();
 
-
-
-  if (data.error.status === 404) return notFound();
-
-  const blocks = data[0]?.blocks;
-
-  // console.dir(blocks, { depth: null });
-  // console.log(slug);
+  const blocks = data?.data[0]?.blocks;
+  if (!blocks) return null;
 
   return (
     <Container>

@@ -111,7 +111,7 @@ export async function Footer() {
   if (!data.data) return null;
 
   const footer = data?.data?.footer;
-  console.dir(footer, { depth: null }); // Debugging
+  // console.dir(footer, { depth: null });
 
   const { logoLink, colOneLinks, colTwoLinks, socialLinks, description } =
     footer;

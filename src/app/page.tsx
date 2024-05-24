@@ -76,10 +76,8 @@ function blockRenderer(block: any) {
 
 export default async function Home() {
   const data = await loader();
-  const blocks = data?.blocks;
+  const blocks = data?.data?.blocks;
   if (!blocks) return null;
-
-  // console.dir(blocks, { depth: null });
 
   return (
     <Container>
