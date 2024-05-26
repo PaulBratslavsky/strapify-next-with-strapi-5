@@ -20,6 +20,7 @@ interface HeroProps {
 }
 
 export function Hero({ data }: Readonly<HeroProps>) {
+  console.dir(data, { depth: null });
   if (!data) return null;
   const { heading, text, cta, image } = data;
   return (
