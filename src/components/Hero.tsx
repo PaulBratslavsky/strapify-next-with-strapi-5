@@ -1,26 +1,9 @@
 import Link from "next/link";
+import type { HeroInterface } from "@/types";
 import { Container } from "@/components/Container";
 import { StrapiImage } from "./StrapiImage";
 
-interface HeroProps {
-  data: {
-    heading: string;
-    text: string;
-    cta?: {
-      href: string;
-      text: string;
-      external: boolean;
-    };
-    image: {
-      url: string;
-      alternativeText: string | null;
-      name: string;
-    };
-  };
-}
-
-export function Hero({ data }: Readonly<HeroProps>) {
-  console.dir(data, { depth: null });
+export function Hero({ data }: Readonly<HeroInterface>) {
   if (!data) return null;
   const { heading, text, cta, image } = data;
   return (

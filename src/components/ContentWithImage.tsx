@@ -1,24 +1,9 @@
 import { StrapiImage } from "./StrapiImage";
+import type { ContentWithImageInterface } from "@/types";
 import React from "react";
 import { Container } from "@/components/Container";
 
-interface ContentWithImageProps {
-  data: {
-    id: number;
-    __component: string;
-    heading: string;
-    text: string;
-    imageRight: boolean | null;
-    image: {
-      id: number;
-      url: string;
-      alternativeText: string | null;
-      name: string;
-    };
-  };
-}
-
-export function ContentWithImage({ data }: Readonly<ContentWithImageProps>) {
+export function ContentWithImage({ data }: Readonly<ContentWithImageInterface>) {
   if (!data) return null;
   const { heading, text, image, imageRight } = data;
   return (

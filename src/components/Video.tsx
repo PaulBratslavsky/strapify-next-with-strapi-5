@@ -1,14 +1,9 @@
 "use client";
+import { VideoInterface } from "@/types";
 import { useState } from "react";
 import { Container } from "@/components/Container";
 
-interface VideoProps {
-  data: {
-    videoId: string;
-  };
-}
-
-export function Video({ data }: Readonly<VideoProps>) {
+export function Video({ data }: Readonly<VideoInterface>) {
   const [playVideo, setPlayVideo] = useState(false);
 
   if (!data) return null;

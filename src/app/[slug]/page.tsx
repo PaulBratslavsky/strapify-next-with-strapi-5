@@ -10,7 +10,7 @@ import { ContentWithImage } from "@/components/ContentWithImage";
 import { Video } from "@/components/Video";
 import { Testimonials } from "@/components/Testimonials";
 import { Faq } from "@/components/Faq";
-import { Cta } from "@/components/Cta";
+import { CallToAction } from "@/components/CallToAction";
 
 import { Container } from "@/components/Container";
 import { notFound } from "next/navigation";
@@ -99,7 +99,7 @@ function blockRenderer(block: any) {
     case "layout.fa-qs":
       return <Faq key={block.id} data={block} />;
     case "layout.cta":
-      return <Cta key={block.id} data={block} />;
+      return <CallToAction key={block.id} data={block} />;
     default:
       return null;
   }

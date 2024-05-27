@@ -1,4 +1,5 @@
 import React from "react";
+import type { FooterDataInterface, SocialLinkInterface, StrapiMetaInterface } from "@/types";
 
 import { SocialIcon } from "react-social-icons";
 
@@ -51,51 +52,12 @@ async function loader() {
   return data;
 }
 
-interface FooterData {
-  data: {
-    footer: {
-      id: number;
-      documentId: string;
-      description: string;
-      logoLink: {
-        id: number;
-        text: string;
-        href: string;
-        image: {
-          id: number;
-          url: string;
-          alternativeText: string | null;
-          name: string;
-        };
-      };
-      colOneLinks: {
-        id: number;
-        href: string;
-        text: string;
-        external: boolean;
-      }[];
-      colTwoLinks: {
-        id: number;
-        href: string;
-        text: string;
-        external: boolean;
-      }[];
-      socialLinks: {
-        id: number;
-        heading: string;
-        socialLink: SocialLink[];
-      };
-    };
-  };
+interface Data {
+  data: FooterDataInterface;
+  meta: StrapiMetaInterface;
 }
 
-interface SocialLink {
-  id: number;
-  href: string;
-  text: string;
-  external: boolean;
-}
-function iconSelect(link: SocialLink) {
+function iconSelect(link: SocialLinkInterface) {
   if (!link) return null;
   return (
     <SocialIcon
@@ -107,11 +69,10 @@ function iconSelect(link: SocialLink) {
 }
 
 export async function Footer() {
-  const data = (await loader()) as FooterData;
+  const data = (await loader()) as Data;
   if (!data.data) return null;
 
   const footer = data?.data?.footer;
-  // console.dir(footer, { depth: null });
 
   const { logoLink, colOneLinks, colTwoLinks, socialLinks, description } =
     footer;

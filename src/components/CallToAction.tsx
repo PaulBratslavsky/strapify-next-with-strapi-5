@@ -1,23 +1,9 @@
 import React from "react";
+import type { CallToActionInterface } from "@/types";
 import Link from "next/link";
 import { Container } from "@/components/Container";
 
-interface CtaProps {
-  data: {
-    id: number;
-    __component: string;
-    heading: string;
-    subHeading: string;
-    cta: {
-      id: number;
-      href: string;
-      text: string;
-      external: boolean;
-    };
-  }
-}
-
-export function Cta({ data }: CtaProps) {
+export function CallToAction({ data }: CallToActionInterface) {
   if (!data) return null;
   const { heading, subHeading, cta } = data;
   return (

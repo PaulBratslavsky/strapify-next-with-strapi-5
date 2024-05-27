@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import type { FaqInterface } from "@/types";
 import { Container } from "@/components/Container";
 import {
   Disclosure,
@@ -8,22 +9,9 @@ import {
 } from "@headlessui/react";
 import { ChevronUpIcon } from "@heroicons/react/24/solid";
 
-interface FaqProps {
-  data: {
-    id: number;
-    __component: string;
-    questions: {
-      id: number;
-      question: string;
-      answer: string;
-      createdAt: string;
-      updatedAt: string;
-      publishedAt: string;
-    }[];
-  };
-}
 
-export function Faq({ data }: FaqProps) {
+export function Faq({ data }: FaqInterface) {
+  console.dir(data, { depth: null });
   if (!data) return null;
   const questions = data.questions;
 

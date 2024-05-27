@@ -1,27 +1,11 @@
 import React from "react";
+import type { TestimonialsInterface, TestimonialCardInterface } from "@/types";
 import { Container } from "@/components/Container";
 import { StrapiImage } from "./StrapiImage";
 
-interface CardProps {
-  id: number;
-  heading: string;
-  subHeading: string;
-  text: string;
-  image: {
-    name: string;
-    alternativeText: string | null;
-    url: string;
-  };
-}
 
-interface TestimonialsProps {
-  data: {
-    id: number;
-    card: CardProps[];
-  };
-}
 
-export function Testimonials({ data }: Readonly<TestimonialsProps>) {
+export function Testimonials({ data }: Readonly<TestimonialsInterface>) {
   if (!data) return null;
   const cards = data.card;
   return (
@@ -42,7 +26,7 @@ export function Testimonials({ data }: Readonly<TestimonialsProps>) {
   );
 }
 
-function Avatar(props: CardProps) {
+function Avatar(props: TestimonialCardInterface) {
   return (
     <div className="flex items-center mt-8 space-x-3">
       <div className="flex-shrink-0 overflow-hidden rounded-full w-14 h-14">

@@ -1,16 +1,8 @@
 import React from "react";
+import type { SectionHeadingInterface } from "@/types";
 import { Container } from "@/components/Container";
 
-interface SectionHeadingProps {
-  data: {
-    id: number;
-    preHeading: string;
-    heading: string;
-    text: string;
-  };
-}
-
-export function SectionHeading({ data }: Readonly<SectionHeadingProps>) {
+export function SectionHeading({ data }: Readonly<SectionHeadingInterface>) {
   if (!data) return null;
   const { preHeading, heading, text } = data;
 

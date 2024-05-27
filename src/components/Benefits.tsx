@@ -1,4 +1,5 @@
 import React from "react";
+import type { BenefitsInterface } from "@/types";
 import { StrapiImage } from "./StrapiImage";
 import { Container } from "@/components/Container";
 import { CheckIcon } from "@heroicons/react/20/solid";
@@ -13,29 +14,9 @@ function iconSelect(iconKey: string) {
 }
 
 
-interface BenefitProps {
-  data: {
-    id: number;
-    __component: string;
-    heading: string;
-    text: string;
-    imageRight: boolean | null;
-    image: {
-      id: number;
-      url: string;
-      alternativeText: string | null;
-      name: string;
-    };
-    item: {
-      id: number;
-      text: string;
-      icon: string | null;
-      heading: string;
-    }[];
-  };
-}
 
-export function Benefits({ data }: BenefitProps) {
+
+export function Benefits({ data }: BenefitsInterface) {
   if (!data) return null;
   const { heading, text, image, item, imageRight } = data;
   return (

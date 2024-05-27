@@ -1,4 +1,6 @@
 import qs from "qs";
+import { NavbarDataInterface, StrapiMetaInterface } from "@/types";
+
 import Link from "next/link";
 import ThemeChanger from "./DarkSwitch";
 import { DisclosureClient } from "@/components/DisclosureClient";
@@ -38,50 +40,13 @@ async function loader() {
   return data;
 }
 
-
-
-
-interface NavbarData {
-  data: {
-    id: number;
-    documentId: string;
-    title: string;
-    description: string;
-    createdAt: string;
-    updatedAt: string;
-    publishedAt: string;
-    topnav: {
-      id: number;
-      logoLink: {
-        id: number;
-        text: string;
-        href: string;
-        image: {
-          id: number;
-          url: string;
-          alternativeText: string | null;
-          name: string;
-        };
-      };
-      link: {
-        id: number;
-        href: string;
-        text: string;
-        external: boolean;
-      }[];
-      cta: {
-        id: number;
-        href: string;
-        text: string;
-        external: boolean;
-      };
-    };
-  };
-  meta: Record<string, any>;
+interface Data {
+  data: NavbarDataInterface;
+  meta: StrapiMetaInterface;
 }
 
 export async function Navbar() {
-  const data = (await loader()) as NavbarData;
+  const data = (await loader()) as Data;
   if (!data.data) return null;
 
   const navigation = data?.data?.topnav;
@@ -124,47 +89,3 @@ export async function Navbar() {
     </div>
   );
 }
-
-
-/*
-
-const testData = {
-  data: {
-    id: 4,
-    documentId: "luienlndlhxy1wrbz3jmn510",
-    title: "Global",
-    description: "Global setting pate",
-    createdAt: "2024-05-23T15:35:56.132Z",
-    updatedAt: "2024-05-23T16:03:26.692Z",
-    publishedAt: "2024-05-23T16:03:26.703Z",
-    locale: null,
-    topnav: {
-      id: 3,
-      logoLink: {
-        id: 4,
-        href: "/",
-        text: "Strapify",
-        image: {
-          id: 1,
-          documentId: "adlqqhmaathuqym1ree67xp2",
-          url: "/uploads/logo_e0917a4240.svg",
-          alternativeText: null,
-          name: "logo.svg",
-        },
-      },
-      link: [
-        { id: 12, href: "/about", text: "About", external: false },
-        { id: 13, href: "/blog", text: "Blog", external: false },
-      ],
-      cta: {
-        id: 14,
-        href: "https://strapi.io/five",
-        text: "Strapi 5",
-        external: true,
-      },
-    },
-  },
-  meta: {},
-};
-
-*/
